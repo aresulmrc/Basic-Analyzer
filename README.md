@@ -51,7 +51,11 @@ python main.py --domain example.com --whois
 ### Subdomain Keşfi
 
 ```bash
+# Varsayılan wordlist ile
 python main.py --domain example.com --subdomains
+
+# Özel wordlist dosyası ile
+python main.py --domain example.com --subdomains --wordlist my_wordlist.txt
 ```
 
 ### Tüm Analizler + JSON Export
@@ -67,6 +71,7 @@ python main.py --domain example.com --all --output sonuc.json
 - `--reverse`: Reverse DNS sorgulaması yapar
 - `--whois`: Domain için WHOIS sorgulaması yapar
 - `--subdomains`: Subdomain keşfi yapar
+- `--wordlist, -w`: Subdomain taraması için özel wordlist dosyası
 - `--all`: Tüm analizleri yapar
 - `--output, -o`: Sonuçları JSON dosyasına kaydeder
 - `--verbose, -v`: Detaylı log çıktısı
@@ -94,7 +99,38 @@ python main.py --domain example.com --all --output sonuc.json
 [+] AS: AS15133 Edgecast Inc.
 ```
 
-## 🛠️ Teknik Detaylar
+## � Wordlist Kullanımı
+
+Subdomain keşfi için özel wordlist dosyası kullanabilirsiniz:
+
+### Varsayılan Wordlist
+- Proje klasöründe `wordlist.txt` dosyası bulunur
+- 400+ subdomain terimi içerir
+- Türkçe ve İngilizce terimler
+
+### Özel Wordlist
+```bash
+# Kendi wordlist dosyanızı kullanın
+python main.py --domain example.com --subdomains --wordlist my_wordlist.txt
+```
+
+### Wordlist Formatı
+- Her satırda bir subdomain terimi
+- Boş satırlar otomatik olarak atlanır
+- UTF-8 encoding kullanın
+
+**Örnek wordlist.txt:**
+```
+www
+mail
+ftp
+admin
+api
+test
+dev
+```
+
+## �🛠️ Teknik Detaylar
 
 - **Python**: 3.8+
 - **DNS**: `dnspython` kütüphanesi
